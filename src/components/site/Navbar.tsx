@@ -34,7 +34,10 @@ const Navbar = () => {
           <img
             src={artisanCollectionLogo}
             alt="The Artisan Collection — TA Ramskill"
-            className="h-20 md:h-24 w-auto object-contain"
+            className={cn(
+              "w-auto object-contain transition-all duration-500",
+              scrolled ? "h-12 md:h-14" : "h-20 md:h-24"
+            )}
           />
         </a>
         <ul className="hidden lg:flex items-center gap-10">
@@ -43,7 +46,7 @@ const Navbar = () => {
               <a
                 href={l.href}
                 className={cn(
-                  "text-xs uppercase tracking-[0.25em] transition-colors hover:text-accent",
+                  "nav-link text-xs uppercase tracking-[0.25em] transition-colors hover:text-accent",
                   scrolled ? "text-charcoal/80" : "text-cream/90"
                 )}
               >
@@ -55,10 +58,10 @@ const Navbar = () => {
         <a
           href="/#contact"
           className={cn(
-            "hidden md:inline-flex items-center px-5 h-10 text-[10px] uppercase tracking-[0.3em] transition-all duration-500 border",
+            "hidden md:inline-flex items-center px-5 h-10 text-[10px] uppercase tracking-[0.3em] transition-all duration-500 border shadow-sm",
             scrolled
-              ? "border-charcoal/40 text-charcoal hover:bg-charcoal hover:text-cream"
-              : "border-cream/40 text-cream hover:bg-cream hover:text-charcoal"
+              ? "bg-brown text-cream border-brown hover:bg-accent hover:border-accent hover:text-charcoal"
+              : "bg-accent/90 text-charcoal border-accent hover:bg-brown hover:border-brown hover:text-cream"
           )}
         >
           Reserve

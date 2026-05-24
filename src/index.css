@@ -35,6 +35,8 @@ All colors MUST be HSL.
     --charcoal: 220 15% 12%;
     --beige: 33 25% 85%;
     --cream: 36 30% 97%;
+    --brown: 28 55% 22%;                /* deep logo brown */
+    --brown-foreground: 36 30% 97%;
 
     --destructive: 0 70% 45%;
     --destructive-foreground: 36 30% 97%;
@@ -46,7 +48,7 @@ All colors MUST be HSL.
     --radius: 0.25rem;
 
     /* Gradients & shadows */
-    --gradient-hero: linear-gradient(180deg, hsl(220 15% 8% / 0.2) 0%, hsl(220 15% 6% / 0.85) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(28 55% 18% / 0.15) 0%, hsl(28 55% 12% / 0.7) 100%);
     --gradient-gold: linear-gradient(135deg, hsl(41 50% 60%), hsl(38 40% 45%));
     --gradient-dark: linear-gradient(180deg, hsl(220 15% 12%), hsl(220 18% 8%));
     --shadow-luxe: 0 30px 80px -30px hsl(220 15% 8% / 0.45);
@@ -187,5 +189,121 @@ All colors MUST be HSL.
     will-change: transform;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+  }
+
+  .hero-pan-left {
+    animation: hero-pan-left 22s linear infinite alternate;
+  }
+
+  .hero-pan-right {
+    animation: hero-pan-right 22s linear infinite alternate;
+  }
+
+  @keyframes hero-pan-left {
+    0% { transform: scale(1.12) translate3d(2%, 0, 0); }
+    100% { transform: scale(1.18) translate3d(-2%, -1%, 0); }
+  }
+
+  @keyframes hero-pan-right {
+    0% { transform: scale(1.12) translate3d(-2%, 0, 0); }
+    100% { transform: scale(1.18) translate3d(2%, -1%, 0); }
+  }
+
+  .hero-vignette {
+    background:
+      radial-gradient(ellipse at center, transparent 35%, hsl(28 55% 8% / 0.55) 100%);
+  }
+
+  .hero-bottom-fade {
+    background: linear-gradient(180deg, transparent 60%, hsl(var(--cream)) 100%);
+  }
+
+  .scroll-drip {
+    position: relative;
+    width: 1px;
+    height: 3rem;
+    background: hsl(var(--cream) / 0.25);
+    overflow: hidden;
+  }
+
+  .scroll-drip::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: -1px;
+    top: -40%;
+    width: 3px;
+    height: 40%;
+    background: linear-gradient(180deg, transparent, hsl(var(--accent)));
+    animation: scroll-drip 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
+  @keyframes scroll-drip {
+    0% { top: -40%; opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  .nav-link {
+    position: relative;
+    padding-bottom: 4px;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 500ms var(--transition-smooth);
+  }
+
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+
+  .paper-grain {
+    position: relative;
+  }
+
+  .paper-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.25  0 0 0 0 0.15  0 0 0 0 0.08  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 160px 160px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-pan-left,
+    .hero-pan-right,
+    .scroll-drip::after {
+      animation: none;
+    }
+  }
+
+  @media print {
+    header,
+    footer {
+      display: none !important;
+    }
+
+    .three-by-jo-menu {
+      background: white !important;
+      color: #1a1a1f !important;
+    }
+
+    .three-by-jo-menu .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 }

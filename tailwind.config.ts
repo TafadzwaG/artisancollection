@@ -23,6 +23,10 @@ export default {
         charcoal: "hsl(var(--charcoal))",
         beige: "hsl(var(--beige))",
         cream: "hsl(var(--cream))",
+        brown: {
+          DEFAULT: "hsl(var(--brown))",
+          foreground: "hsl(var(--brown-foreground))",
+        },
         gold: {
           DEFAULT: "hsl(var(--gold))",
           foreground: "hsl(var(--gold-foreground))",

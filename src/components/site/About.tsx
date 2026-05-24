@@ -1,7 +1,7 @@
 import Reveal from "./Reveal";
 
 const About = () => (
-  <section id="about" className="py-28 md:py-40 bg-cream">
+  <section id="about" className="relative py-28 md:py-40 bg-cream paper-grain">
     <div className="container grid lg:grid-cols-12 gap-12 lg:gap-20">
       <Reveal className="lg:col-span-4" variant="left">
         <p className="eyebrow mb-6">About the Collection</p>

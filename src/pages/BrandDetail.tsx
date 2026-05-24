@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { CalendarDays, ChevronLeft, Mail, Sparkles } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
+import { CalendarDays, ChevronLeft, Mail, Sparkles, UtensilsCrossed } from "lucide-react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import BrandLogo from "@/components/site/BrandLogo";
@@ -96,7 +96,15 @@ const BrandDetail = () => {
               {brand.description}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Button variant="gold" size="xl" asChild>
+              {brand.id === "three-by-joe" ? (
+                <Button variant="gold" size="xl" asChild>
+                  <Link to="/brands/three-by-joe/menu">
+                    <UtensilsCrossed className="h-4 w-4" />
+                    View Menu
+                  </Link>
+                </Button>
+              ) : null}
+              <Button variant={brand.id === "three-by-joe" ? "luxe" : "gold"} size="xl" asChild>
                 <a href="/#contact">
                   <CalendarDays className="h-4 w-4" />
                   Enquire Now

@@ -19,7 +19,7 @@ const Gallery = () => {
   ];
 
   return (
-    <section id="gallery" className="py-28 md:py-36 bg-cream">
+    <section id="gallery" className="relative py-28 md:py-36 bg-cream paper-grain">
       <div className="container">
         <Reveal
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14"
