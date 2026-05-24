@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* The Artisan Collection — Luxury hospitality palette */
+    --background: 36 30% 97%;          /* soft white / warm cream */
+    --foreground: 220 15% 12%;          /* deep charcoal */
+
+    --card: 36 25% 95%;
+    --card-foreground: 220 15% 12%;
+
+    --popover: 36 30% 97%;
+    --popover-foreground: 220 15% 12%;
+
+    --primary: 220 15% 12%;             /* charcoal */
+    --primary-foreground: 36 30% 97%;
+
+    --secondary: 33 25% 88%;            /* warm beige */
+    --secondary-foreground: 220 15% 12%;
+
+    --muted: 33 20% 92%;
+    --muted-foreground: 220 10% 38%;
+
+    --accent: 41 45% 52%;               /* muted gold */
+    --accent-foreground: 220 15% 12%;
+
+    --gold: 41 45% 52%;
+    --gold-foreground: 220 15% 12%;
+    --charcoal: 220 15% 12%;
+    --beige: 33 25% 85%;
+    --cream: 36 30% 97%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 36 30% 97%;
+
+    --border: 33 20% 85%;
+    --input: 33 20% 85%;
+    --ring: 41 45% 52%;
+
+    --radius: 0.25rem;
+
+    /* Gradients & shadows */
+    --gradient-hero: linear-gradient(180deg, hsl(220 15% 8% / 0.2) 0%, hsl(220 15% 6% / 0.85) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(41 50% 60%), hsl(38 40% 45%));
+    --gradient-dark: linear-gradient(180deg, hsl(220 15% 12%), hsl(220 18% 8%));
+    --shadow-luxe: 0 30px 80px -30px hsl(220 15% 8% / 0.45);
+    --shadow-card: 0 10px 40px -15px hsl(220 15% 8% / 0.18);
+    --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 18% 8%;
+    --foreground: 36 30% 95%;
+    --card: 220 15% 12%;
+    --card-foreground: 36 30% 95%;
+    --popover: 220 18% 8%;
+    --popover-foreground: 36 30% 95%;
+    --primary: 36 30% 95%;
+    --primary-foreground: 220 15% 12%;
+    --secondary: 220 12% 18%;
+    --secondary-foreground: 36 30% 95%;
+    --muted: 220 10% 16%;
+    --muted-foreground: 36 15% 70%;
+    --accent: 41 45% 55%;
+    --accent-foreground: 220 15% 12%;
+    --destructive: 0 62.8% 40%;
+    --destructive-foreground: 36 30% 95%;
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 41 45% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .font-display {
+    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  }
+
+  .eyebrow {
+    @apply uppercase tracking-[0.3em] text-xs font-medium text-accent;
+  }
+
+  /* Reveal on scroll */
+  .reveal,
+  [data-reveal] {
+    opacity: 0;
+    transition:
+      opacity 1s var(--transition-smooth),
+      transform 1s var(--transition-smooth);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal[data-reveal="up"],
+  .reveal:not([data-reveal]) {
+    transform: translate3d(0, 36px, 0);
+  }
+
+  .reveal[data-reveal="down"] {
+    transform: translate3d(0, -36px, 0);
+  }
+
+  .reveal[data-reveal="left"] {
+    transform: translate3d(-40px, 0, 0);
+  }
+
+  .reveal[data-reveal="right"] {
+    transform: translate3d(40px, 0, 0);
+  }
+
+  .reveal[data-reveal="scale"] {
+    transform: scale(0.94);
+  }
+
+  .reveal[data-reveal="fade"] {
+    transform: none;
+  }
+
+  .reveal.in-view,
+  [data-reveal].in-view {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  .hero-slide {
+    will-change: opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .hero-slide-image {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
